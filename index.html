@@ -97,7 +97,7 @@
     document.querySelectorAll('select').forEach(el=>el.addEventListener('change',Changer))
     document.querySelectorAll('input').forEach(el=>el.addEventListener('change',Changer))
     document.querySelector('button').addEventListener('click',()=>{
-      let img = calc?'true.jpeg':'lie.jpeg';
+      let img = calc?'img/true.jpeg':'img/lie.jpeg';
       let obj = document.querySelector('img')
       if(obj!=null){obj.remove()}
       document.body.insertAdjacentHTML('beforeend',`<img src=${img} width="200">`)
