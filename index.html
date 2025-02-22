@@ -11,6 +11,17 @@
     label:has(+input:checked){
       background-color:green
     }
+    select:last-of-type{
+      display:block
+    }
+    input::after{
+      content:"mentira";
+      position:relative;
+      left:30px;
+    }
+    input:checked::after{
+      content:"verdade"
+    }
   </style>
 </head>
 <body>
@@ -18,14 +29,14 @@
     <option value="nop"></option>
     <option value="yep">~</option>
   </select>
-  <label>(A)verdade: </label>
+  <label>(A)</label>
   <input type="checkbox">
   </br>
   <select>
     <option value="nop"></option>
     <option value="yep">~</option>
   </select>
-  <label>(B)verdade: </label>
+  <label>(B)</label>
   <input type="checkbox">
   <select>
     <option value="">Selecione...</option>
@@ -86,7 +97,7 @@
     document.querySelectorAll('select').forEach(el=>el.addEventListener('change',Changer))
     document.querySelectorAll('input').forEach(el=>el.addEventListener('change',Changer))
     document.querySelector('button').addEventListener('click',()=>{
-      let img = calc?'img/true.jpeg':'img/lie.jpeg';
+      let img = calc?'true.jpeg':'lie.jpeg';
       let obj = document.querySelector('img')
       if(obj!=null){obj.remove()}
       document.body.insertAdjacentHTML('beforeend',`<img src=${img} width="200">`)
