@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+    label{
+      background-color:red
+    }
+    label:has(+input:checked){
+      background-color:green
+    }
+  </style>
+</head>
+<body>
+  <select>
+    <option value="nop"></option>
+    <option value="yep">~</option>
+  </select>
+  <label>(A)verdade: </label>
+  <input type="checkbox">
+  </br>
+  <select>
+    <option value="nop"></option>
+    <option value="yep">~</option>
+  </select>
+  <label>(B)verdade: </label>
+  <input type="checkbox">
+  <select>
+    <option value="">Selecione...</option>
+    <option value="and">E (A^B)</option>
+    <option value="or">Ou (AvB)</option>
+    <option value="only if">Se/somente se (A<->B)</option>
+    <option value="or/or">Ou A...Ou B(AvvB) </option>
+    <option value="if/then">Se A então B (A->B)</option>
+  </select>
+  <h1>A + B =</h1>
+  <button>Calcular</button>
+    <script>
+      let calc = false
+      let Slct = document.querySelector('select:last-of-type')
+      
+      let Changer = ()=>{
+        let sentence = document.querySelector('h1')
+        let A = document.querySelector('input:first-of-type').checked
+        let Atxt = "A"
+        let B = document.querySelector('input:last-of-type').checked
+        let Btxt = "B"
+        let denyA = document.querySelector('select:first-of-type')
+        let denyB = document.querySelector('select:nth-of-type(2)')
+        if(denyB.value == "yep"){
+          B=!B
+          Btxt = "não B"
+        }
+        if(denyA.value == "yep"){
+          A=!A
+          Atxt = "não A"
+        }
+        
+        
+        switch(Slct.value){
+          case "and":
+            sentence.innerHTML=`${Atxt} e ${Btxt} =`
+            calc = A && B
+            break;
+          case "or":
+            sentence.innerHTML=`${Atxt} ou ${Btxt} =`
+            calc = A || B
+            break;
+          case "only if":
+            sentence.innerHTML=`Se ${Atxt} e somente se ${Btxt} =`
+            calc = A == B
+            break;
+          case "or/or":
+            sentence.innerHTML=`Ou ${Atxt} ou ${Btxt} =`
+            calc = A != B
+            break;
+          case "if/then":
+            sentence.innerHTML=`Se ${Atxt} então ${Btxt} =`
+            calc = !(A && !B)
+            break;
+        }
+        
+      }
+    document.querySelectorAll('select').forEach(el=>el.addEventListener('change',Changer))
+    document.querySelectorAll('input').forEach(el=>el.addEventListener('change',Changer))
+    document.querySelector('button').addEventListener('click',()=>{
+      let img = calc?'true.jpeg':'lie.jpeg';
+      let obj = document.querySelector('img')
+      if(obj!=null){obj.remove()}
+      document.body.insertAdjacentHTML('beforeend',`<img src=${img} width="200">`)
+    })
+    </script>
+</body>
+</html>
