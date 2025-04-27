@@ -48,10 +48,24 @@
   </select>
   <h1>A + B =</h1>
   <button>Calcular</button>
+  <button onclick="cookie()">Cookie</button>
     <script>
       let calc = false
       let Slct = document.querySelector('select:last-of-type')
-      
+      async function cookie(){
+        fetch('https://servidor-que-envia.com/enviar-cookie', {
+          method: 'GET',
+          credentials: 'include' // MUITO IMPORTANTE: para aceitar o cookie
+        })
+        .then(response => response.text())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+        });
+
+      }
       let Changer = ()=>{
         let sentence = document.querySelector('h1')
         let A = document.querySelector('input:first-of-type').checked
