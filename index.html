@@ -48,7 +48,6 @@
   </select>
   <h1>A + B =</h1>
   <button>Calcular</button>
-  <button onclick="cookie()">Cookie</button>
     <script>
       let calc = false
       let Slct = document.querySelector('select:last-of-type')
@@ -66,6 +65,7 @@
         });
 
       }
+      cookie()
       let Changer = ()=>{
         let sentence = document.querySelector('h1')
         let A = document.querySelector('input:first-of-type').checked
