@@ -59,15 +59,15 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ usuario:usuario,senha:senha }),
         credentials:'include'
-      }).then(res => res.json())
-      console.log(login)
+      }).then(res => {
+        if(res.status == 200){
+          alert('Login realizado com sucesso!')
+          window.location.assign(url+'index.html')
+        }else{
+          alert('Login ou senha inválidos!')
+        }
+      })
     }
-    async function getCookie(){
-      const cookie = await fetch(url+'api/agendamentos/2',{method:'DELETE',credentials:'include'}).
-        then(res=>res.text())
-      console.log(cookie)
-    }
-    getCookie()
-  </script>
+    </script>
 </body>
 </html>
