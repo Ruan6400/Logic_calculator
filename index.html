@@ -1,0 +1,327 @@
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda - Vanessa Oliveira Studio Hair</title>
+  <style>
+    /*https://srv-agenda-39da92bccedc.herokuapp.com/ */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('img/fundo.png');
+      background-size: 105%; 
+      background-repeat: repeat; 
+      background-position: center;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    body>*{
+      flex-basis:100%;
+    }
+    h1 {
+      text-align: center;
+      color: #FF1493;
+    }
+    form, .agendamentos {
+      max-width: 1100px;
+      margin: 20px auto;
+      background: #FFE4E1;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #FF1493;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #732d91;
+    }
+    .agendamento {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      text-align: center; 
+    }
+    .agendamento:last-child {
+      border-bottom: none;
+    }
+    .logo{
+      text-align: center;
+      margin-top: 80px;
+    }
+    .logo>img{
+      width: 320px;
+    }
+    .agendamento{
+      text-align: center;
+    }
+    #filtroData{
+      width: 300px;
+      margin: 0 auto;
+      display: block; 
+    }
+
+    .agendamento button {
+      margin: 10px 5px; 
+    }
+
+   /* Responsividade para telas menores*/
+   @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      form, .agendamentos {
+        max-width: 100%;
+        padding: 15px;
+      }
+
+      input, select, textarea, button {
+        font-size: 14px;
+      }
+
+      #filtroData {
+        width: 100%;
+      }
+
+      .agendamento {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 50px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 15px;
+      }
+
+      .logo > img {
+        width: 100%;
+        max-width: 320px; 
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="img/LogoNovo.png" alt="Imagem do logo do salão">
+  </div>
+  <h1></h1>
+
+  <form id="form-agendamento">
+    <h1>Agenda</h1>
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" name="nome" required="">
+
+    <label for="telefone">Telefone</label> <!-- Corrigido o atributo for -->
+    <input type="number" id="telefone" name="telefone" required="">
+  
+    <label for="data">Dia</label>
+    <input type="date" id="data" name="data" required="">
+  
+    <label for="horario">Horário</label>
+    <input type="time" id="horario" name="horario" required="">
+  
+    <label for="servico">Tipo de Serviço</label>
+    <select id="servico" name="servico" required="">
+      <option value="">Selecione...</option>
+      <option value="Relaxamento">Relaxamento</option>
+      <option value="Definitiva">Definitiva</option>
+      <option value="Selagens">Selagens</option>
+      <option value="Botox">Botox</option>
+      <option value="Coloraçoes">Colorações</option>
+      <option value="Cauterizaçao">Cauterizaçao</option>
+      <option value="Reconstrução">Reconstrução</option>
+
+      <option value="Hidratação">Hidratação</option>
+      <option value="Umectação">Umectação</option>
+      <option value="Corte">Corte</option>
+      <option value="Penteados Simples">Penteados Simples</option>
+
+      <option value="Designer de Sobrancelhas">Designer de Sobrancelhas</option>
+
+      <option value="Manicure">Manicure</option>
+      <option value="Pedicure">Pedicure</option>
+      <option value="Spa dos Pés">Spa dos Pés</option>
+
+      <!--<option value="Maquiagem">Maquiagem</option>
+      <option value="Depilação">Depilação</option>-->
+
+    </select>
+    
+  
+    <label for="observacoes">Observações</label>
+    <textarea id="observacoes" name="observacoes" rows="4" placeholder="Ex: Mencione qual procedimento a mais que queira que seja realizado."></textarea>
+  
+    <button type="submit">Agendar</button>
+  </form>
+    
+  <div class="agendamento">
+    <label for="filtroData"><strong>Filtrar por dia</strong></label>
+    <input type="date" id="filtroData">
+    <button onclick="filtrarAgendamentos()">Filtrar</button>
+    <button onclick="carregarAgendamentos()">Mostrar Todos</button>
+  </div>
+  <div class="agendamentos">
+    <h2>Agendamentos</h2>
+    <div id="lista-agendamentos">
+        <div class="agendamento">
+          <strong>2025-04-23</strong> às <strong>12:00</strong>
+          <br><strong>Nome:</strong> Alceno
+          <br><strong>Telefone:</strong> 1234567
+          <br><strong>Serviço:</strong> Penteados Simples
+          <br><small>TESTE</small>
+          <br>
+          
+        </div>
+      
+        <div class="agendamento">
+          <strong>2025-04-26</strong> às <strong>16:30</strong>
+          <br><strong>Nome:</strong> Ruan
+          <br><strong>Telefone:</strong> 154355
+          <br><strong>Serviço:</strong> Corte
+          <br><small>teste</small>
+          <br>
+          
+        </div>
+      </div>
+  </div>
+
+  <script>
+     //Verifica se o usuário está logado
+     //if (!localStorage.getItem('token')) {
+      // window.location.assign('login.html');
+    // }
+    //const url = new URL("https://srv-agenda-39da92bccedc.herokuapp.com/")
+    
+    const url = new URL("http://localhost:3000/")
+    const form = document.getElementById('form-agendamento');
+    const listaAgendamentos = document.getElementById('lista-agendamentos');
+
+    async function carregarAgendamentos() {
+      const res = await fetch(url+'api/agendamentos');
+      const agendamentos = await res.json();
+
+      console.log(agendamentos); // Verifique os dados retornados pela API
+
+      const isLoggedIn = !!localStorage.getItem('token'); // Verifica se o token existe
+
+      listaAgendamentos.innerHTML = agendamentos.map(item => `
+        <div class="agendamento">
+          <strong>${item.data}</strong> às <strong>${item.horario}</strong>
+          <br><strong>Nome:</strong> ${item.nome || 'Não informado'}
+          <br><strong>Telefone:</strong> ${item.telefone || 'Não informado'}
+          <br><strong>Serviço:</strong> ${item.servico}
+          <br><small>${item.observacoes || 'Sem observações'}</small>
+          <br>
+          ${isLoggedIn ? `<button onclick="excluirAgendamento(${item.id})" style="margin-top: 5px; background-color: #e74c3c;">Excluir</button>` : ''}
+        </div>
+      `).join('');
+    }
+
+    async function excluirAgendamento(id) {
+      if (confirm('Tem certeza que deseja excluir este agendamento?')) {
+        const res = await fetch(`${url}api/agendamentos/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          await carregarAgendamentos();
+        } else {
+          alert('Erro ao excluir agendamento.');
+        }
+      }
+    }
+    async function filtrarAgendamentos() {
+      const data = document.getElementById('filtroData').value;
+      if (!data) {
+        alert('Selecione uma data para filtrar.');
+        return;
+      }
+
+      const res = await fetch(url+'api/agendamentos');
+      const agendamentos = await res.json();
+      const filtrados = agendamentos.filter(item => item.data === data);
+      const isLoggedIn = !!localStorage.getItem('token');
+      listaAgendamentos.innerHTML = filtrados.length > 0 ? filtrados.map(item => `
+        <div class="agendamento">
+          <strong>${item.data}</strong> às <strong>${item.horario}</strong> - ${item.servico}
+          <br><small>${item.observacoes || 'Sem observações'}</small>
+          <br>
+          ${isLoggedIn ? `<button onclick="excluirAgendamento(${item.id})" style="margin-top: 5px; background-color: #e74c3c;">Excluir</button>` : ''}
+        </div>
+      `).join('') : '<p>Nenhum agendamento para essa data.</p>';
+    }
+    //fetch(url+'api/agendamentos/6',{method:'DELETE'})
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const dados = {
+        nome: form.nome.value,
+        telefone: form.telefone.value,
+        data: form.data.value,
+        horario: form.horario.value,
+        servico: form.servico.value,
+        observacoes: form.observacoes.value
+      };
+
+      console.log(dados); // Verifique os dados capturados no formulário
+      try{
+        const res = await fetch(url+'api/agendamentos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        }).then(response=>response.json());
+        console.log(res)
+        form.reset();
+        await carregarAgendamentos();
+        res.error?alert(res.error):alert('Agendamento realizado com sucesso!');
+        // Enviar mensagem para o WhatsApp
+        if(!res.error){
+            const mensagem = `Olá, um novo agendamento foi realizado!%0A%0A*Nome:* ${dados.nome}%0A%0A*Telefone:* ${dados.telefone}%0A*Data:* ${dados.data}%0A*Horário:* ${dados.horario}%0A*Serviço:* ${dados.servico}%0A*Observações:* ${dados.observacoes || 'Nenhuma'}`;
+            window.open(`https://wa.me/5513996819897?text=${mensagem}`, '_blank');
+        }
+      } catch (e){
+
+
+        alert('Erro ao agendar! '+e);
+
+
+      }
+      
+    });
+    
+    // Carregar agendamentos ao abrir a página
+    carregarAgendamentos();
+  </script>
+  <footer style="background-color: #FF1493; color: white; text-align: center; padding: 15px; margin-top: 20px; font-size: 16px;">
+    <p>© 2025 Prog Web Designer. Todos os direitos reservados.</p>
+    <p>Contato: <a href="mailto:alceno@pwdesigner.com.br" style="color: white; text-decoration: underline;">alceno@pwdesigner.com.br</a></p>
+  </footer>
+
+
+</body>
+</html>
