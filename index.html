@@ -56,10 +56,17 @@
       const login = await fetch(url+'api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ usuario:usuario,senha:senha })
+        body: JSON.stringify({ usuario:usuario,senha:senha }),
+        credentials:'include'
       }).then(res => res.json())
       console.log(login)
     }
+    async function getCookie(){
+      const cookie = await fetch(url+'api/agendamentos/2,{method:'DELETE',credentials:'include'}).
+        then(res=>res.text())
+      console.log(cookie)
+    }
+    getCookie()
   </script>
 </body>
 </html>
