@@ -244,14 +244,17 @@
 
     async function excluirAgendamento(id) {
       if (confirm('Tem certeza que deseja excluir este agendamento?')) {
-        await fetch(`${url}api/agendamentos/${id}`, { method: 'DELETE',credentials:'include'})
+        const msg = await fetch(`${url}api/agendamentos/${id}`, { method: 'DELETE',credentials:'include'})
         .then(res=>{
           if(res.status == 200){
             alert('Agendamento excluído com sucesso!');
           }else{
             alert('Erro ao excluir agendamento!');
           };
+          return res.json();
         })
+        console.log(msg);
+        carregarAgendamentos();
       }
     }
     async function filtrarAgendamentos() {
