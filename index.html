@@ -47,10 +47,11 @@
   </div>
 
   <script>
+    const url = new URL("https://srv-agenda-39da92bccedc.herokuapp.com/")
     async function fazerLogin() {
       const senha = document.getElementById('senha').value;
       const usuario = document.getElementById('usuario').value;
-      const url = new URL("https://srv-agenda-39da92bccedc.herokuapp.com/")
+      
     
       //const url = new URL("http://localhost:3000/")
       const login = await fetch(url+'api/login', {
