@@ -62,7 +62,7 @@
       console.log(login)
     }
     async function getCookie(){
-      const cookie = await fetch(url+'api/agendamentos/2,{method:'DELETE',credentials:'include'}).
+      const cookie = await fetch(url+'api/agendamentos/2',{method:'DELETE',credentials:'include'}).
         then(res=>res.text())
       console.log(cookie)
     }
