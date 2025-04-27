@@ -61,13 +61,22 @@
         credentials:'include'
       }).then(res => {
         if(res.status == 200){
+          
           alert('Login realizado com sucesso!')
-          window.location.assign('index.html')
+          localStorage.setItem('token','logged')
+          window.location.assign(url+'index.html')
         }else{
           alert('Login ou senha inválidos!')
         }
       })
+      
     }
-    </script>
+    async function getCookie(){
+      const cookie = await fetch(url+'api/agendamentos/2',{method:'DELETE',credentials:'include'}).
+        then(res=>res.text())
+      console.log(cookie)
+    }
+    getCookie()
+  </script>
 </body>
 </html>
