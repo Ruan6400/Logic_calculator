@@ -250,10 +250,10 @@
             alert('Agendamento excluído com sucesso!');
           }else{
             alert('Erro ao excluir agendamento!');
-          };
+          }
           return res.json();
         })
-        console.log(msg);
+        console.log(msg.message);
         carregarAgendamentos();
       }
     }
