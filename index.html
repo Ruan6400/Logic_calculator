@@ -249,11 +249,12 @@
           if(res.status == 200){
             alert('Agendamento excluído com sucesso!');
           }else{
+            localStorage.removeItem('token');
             alert('Erro ao excluir agendamento!');
           }
           return res.json();
         })
-        console.log(msg);
+        console.log(msg.message);
         carregarAgendamentos();
       }
     }
