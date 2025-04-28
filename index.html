@@ -251,9 +251,9 @@
           }else{
             alert('Erro ao excluir agendamento!');
           }
-          return res.json();
+          return res.text();
         })
-        console.log(msg.message);
+        console.log(msg);
         carregarAgendamentos();
       }
     }
